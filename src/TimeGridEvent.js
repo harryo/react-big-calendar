@@ -39,9 +39,10 @@ function TimeGridEvent(props) {
     </div>,
   ]
 
+  const Tag = onClick || onDoubleClick ? 'button' : 'div'
   return (
     <EventWrapper type="time" {...props}>
-      <div
+      <Tag
         onClick={onClick}
         onDoubleClick={onDoubleClick}
         style={{
@@ -63,7 +64,7 @@ function TimeGridEvent(props) {
         })}
       >
         {inner}
-      </div>
+      </Tag>
     </EventWrapper>
   )
 }

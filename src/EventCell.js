@@ -55,11 +55,11 @@ class EventCell extends React.Component {
       </div>
     )
 
+    const Tag = onSelect || onDoubleClick ? 'button' : 'div'
     return (
       <EventWrapper {...this.props} type="date">
-        <div
+        <Tag
           {...props}
-          tabIndex={0}
           style={{ ...userProps.style, ...style }}
           className={clsx('rbc-event', className, userProps.className, {
             'rbc-selected': selected,
@@ -68,10 +68,11 @@ class EventCell extends React.Component {
             'rbc-event-continues-after': continuesAfter,
           })}
           onClick={e => onSelect && onSelect(event, e)}
+          onKeyDown={e => e.key === 'Enter' && onSelect && onSelect(event, e)}
           onDoubleClick={e => onDoubleClick && onDoubleClick(event, e)}
         >
           {typeof children === 'function' ? children(content) : content}
-        </div>
+        </Tag>
       </EventWrapper>
     )
   }
